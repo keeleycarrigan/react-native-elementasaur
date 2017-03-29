@@ -1,0 +1,28 @@
+{
+  "name": "react-native-elementasaur",
+  "version": "0.0.1",
+  "description": "Hopefully useful React Native components.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keeleycarrigan/react-native-elementasaur"
+  },
+  "author": "Keeley Carrigan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keeleycarrigan/react-native-elementasaur/issues"
+  },
+  "homepage": "https://github.com/keeleycarrigan/react-native-elementasaur#readme",
+  "dependencies": {
+    "color-js": "^1.0.3",
+    "lodash": "^4.17.4",
+    "react": "^15.4.2",
+    "react-native": "0.41.2",
+    "react-native-keyboard-aware-scroll-view": "^0.2.8",
+    "react-native-vector-icons": "^4.0.0",
+    "utilidon": "^1.0.0"
+  }
+}
