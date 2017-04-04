@@ -21,5 +21,9 @@ export default ConditionalBlock = (props) => {
 }
 
 ConditionalBlock.propTypes = {
-	test: PropTypes.bool
+	test: PropTypes.oneOfType([
+		PropTypes.bool,
+		PropTypes.array,
+		PropTypes.object
+	])
 };

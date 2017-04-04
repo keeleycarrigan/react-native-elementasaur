@@ -1,6 +1,6 @@
 {
   "name": "react-native-elementasaur",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Hopefully useful React Native components.",
   "main": "index.js",
   "scripts": {
