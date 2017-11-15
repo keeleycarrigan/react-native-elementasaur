@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import {
 	ActivityIndicator,
 	Animated,
 	Image,
-	Platform,
 	StyleSheet,
 	View
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Color from 'color-js';
 import { get } from 'lodash';
 
@@ -15,7 +15,6 @@ const loaded = false;
 export default ProgressiveImage = (props) => {
 	const {
 		afterImgLoaded,
-		androidOverlay,
 		height,
 		imgProps: img_props,
 		overlay,
@@ -24,11 +23,10 @@ export default ProgressiveImage = (props) => {
 		style,
 		width
 	} = props;
-	const ios_round_styles = round ? { borderRadius: Math.fround(height / 2), overflow: 'hidden' } : {};
-	const android_round_styles = round ? { borderRadius: Math.fround(height / 2), overflow: 'hidden', overlayColor: androidOverlay } : {};
+
+	const round_styles = round ? { borderRadius: Math.fround(height / 2), overflow: 'hidden' } : {};
 	const img_opacity = new Animated.Value(loaded ? 1 : 0);
 	const overlay_color = overlay ? Color(overlay.color).setAlpha(overlay.alpha || 0.5).toRGB() : 'transparent';
-	const is_ios = Platform.OS === 'ios';
 	const img_size = get(img_props, 'resizeMode', null) === 'cover' ? { flex: 1, height: null, width: null } : { height, width };
 
 	const imageLoaded = () => {
@@ -64,7 +62,7 @@ export default ProgressiveImage = (props) => {
 					{renderActivity()}
 					<Animated.View style={{ flex: 1, opacity: img_opacity }}>
 						<Image
-							style={[ img_size, !is_ios && android_round_styles]}
+							style={[ img_size ]}
 							source={source}
 							onLoadEnd={imageLoaded}
 							{...img_props}
@@ -77,7 +75,7 @@ export default ProgressiveImage = (props) => {
 	};
 
 	return (
-		<View style={[ { height, width, backgroundColor: props.defaultBGColor }, style, is_ios ? ios_round_styles : android_round_styles ]}>
+		<View style={[ { height, width, backgroundColor: props.defaultBGColor }, style, round_styles ]}>
 			{getImg(source)}
 			<View style={[ styles.full, styles.center_v_auto, { backgroundColor: 'transparent' } ]}>
 				{props.children}
@@ -102,7 +100,6 @@ const styles = StyleSheet.create({
 });
 
 ProgressiveImage.propTypes = {
-	androidOverlay: PropTypes.string,
 	afterImgLoaded: PropTypes.func,
 	defaultBGColor: PropTypes.string,
 	height: PropTypes.number,
@@ -116,6 +113,7 @@ ProgressiveImage.propTypes = {
 	source:PropTypes.oneOfType([
 		PropTypes.bool,
 		PropTypes.func,
+		PropTypes.number,
 		PropTypes.object
 	]),
 	style: PropTypes.object,
@@ -123,7 +121,6 @@ ProgressiveImage.propTypes = {
 };
 
 ProgressiveImage.defaultProps = {
-	androidOverlay: '#FFFFFF',
 	defaultBGColor: '#CCCCCC',
 	height: null,
 	loaderColor: '#FFFFFF',

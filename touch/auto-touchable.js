@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import {
 	Platform,
 	TouchableHighlight,
@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	View
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 export default AutoTouchable = (props) => {
 	const {
