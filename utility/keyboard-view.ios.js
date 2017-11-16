@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
 	Animated,
 	Dimensions,
@@ -8,6 +8,7 @@ import {
 	ScrollView,
 	View
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 const { height: win_height, width: win_width } = Dimensions.get('window');
 
